@@ -11,27 +11,30 @@ class Mkprj < Thor
   end
   
   
-  desc "foo", "prints foo"
-  def foo
-    puts "foo"
-  end
-
-  desc "example FILE", "an example task that does something with a file"
-  def example(file)
-    puts "You supplied the file: #{file}"
-  end
-
-  desc "create", "create a blank web project"
+  desc "create MY_PROJECT", "create a blank web project"
+  method_options :prjtype => "basic"
   def create(filename)
-    puts "You supplied the name: #{filename}"
-    puts "creating directory: #{filename}"
-    directory "templates/basic", "#{filename}", :recursive => true
-    #empty_directory "#{filename}"
-    #copy_file "templates/basic/index.html","#{filename}/index.html"
-    #empty_directory "#{filename}/js"
-    #empty_directory "#{filename}/css"
-    
+    if options[:prjtype] == "basic"
+      holla(filename)
+      directory "templates/basic", "#{filename}", :recursive => true
+    elsif options[:prjtype] == "html5"
+      holla(filename)
+      directory "templates/html5", "#{filename}", :recursive => true
+    elsif options[:prjtype] == "boilerplate"
+      holla(filename)
+      directory "templates/html5_boilerplate", "#{filename}", :recursive => true
+    else
+      puts "WTF?"
+    end
   end
+  
+  no_tasks do
+    def holla(filename)
+      puts "You supplied the name: #{filename}"
+      puts "creating directory: #{filename}"
+    end
+  end
+  
 end
 
 #Mkprj.start
