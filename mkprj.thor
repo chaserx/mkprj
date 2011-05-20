@@ -1,7 +1,6 @@
 #!/usr/loca/bin/env ruby
 
 require 'thor'
-require 'fileutils'
 
 class Mkprj < Thor
   include Thor::Actions
