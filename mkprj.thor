@@ -30,7 +30,7 @@ class Mkprj < Thor
   no_tasks do
     def holla(filename)
       puts "You supplied the name: #{filename}"
-      puts "creating directory: #{filename}"
+      puts "About to create: #{filename}"
     end
   end
   
